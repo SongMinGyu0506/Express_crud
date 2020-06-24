@@ -1,0 +1,22 @@
+<thead>
+	<tr>
+		<th>number</th>
+		<th>title</th>
+		<th>writer</th>
+		<th>date</th>
+	</tr>
+</thead>
+<tbody>
+	<%
+		for(var i=0; i<rows.length; i++) {
+	%>
+		<div><tr>
+			<td><%=rows[i].BRDNO%></td>
+			<td><%=rows[i].title%></td>
+			<td><%=rows[i].writer%></td>
+			<td><%=rows[i].dt%></td>
+		</tr></div>
+	<%
+		}
+	%>
+</tbody>
