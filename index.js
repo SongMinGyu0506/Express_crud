@@ -12,8 +12,14 @@ const connection = mysql.createConnection({
 });
 const port = 3000
 
+const userRouter = require('./routes/user');
+const postRouter = require('./routes/post');
+
 app.set('views',__dirname+'/views');
 app.set('view engine','ejs');
+
+app.use('/user',userRouter);
+app.use('/post',postRouter);
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
