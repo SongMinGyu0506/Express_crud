@@ -11,12 +11,15 @@
 		for(var i=0; i<rows.length; i++) {
 	%>
 		<div><tr>
+				<a href="/post/delete/<%= rows[i].BRDNO%>">DELETE</a> </td>
 			<td><%=rows[i].BRDNO%></td>
-			<td><%=rows[i].title%></td>
+			<td><a href="/post/list/<%= rows[i].BRDNO%>"><%=rows[i].title%></a></td>
 			<td><%=rows[i].writer%></td>
 			<td><%=rows[i].dt%></td>
+				<td><%=rows[i].memo%></td>
 		</tr></div>
 	<%
 		}
 	%>
 </tbody>
+<button type="button" onclick="location.href='/post/create'">create</button>

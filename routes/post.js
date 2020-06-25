@@ -28,6 +28,23 @@ router.get('/list',(req,res)=>{
 	});
 });
 
+router.get('/delete/:id',(req,res)=>{
+	var boardNo = req.params.id;
+	var sql = "delete from tbl_board where BRDNO = ?";
+	connection.query(sql,boardNo,(err,rows)=> {
+		if(err) console.error("err: " + err);
+	});
+	res.redirect('/post/list');
+})
+
+router.get('/list/:id',(req,res)=>{
+	var connectNo = req.params.id;
+	var sql = "select memo from tbl_board where = ?";
+	connection.query(sql,connectNo,(err,rows)=> {
+		res.render('memo',{rows:rows?rows:{}});
+	});
+});
+
 router.get('/create',(req,res)=>{
 	res.render("create");
 });
