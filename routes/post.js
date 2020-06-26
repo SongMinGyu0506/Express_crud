@@ -38,11 +38,31 @@ router.get('/delete/:id',(req,res)=>{
 })
 
 router.get('/list/:id',(req,res)=>{
-	var connectNo = req.params.id;
-	var sql = "select memo from tbl_board where = ?";
-	connection.query(sql,connectNo,(err,rows)=> {
-		res.render('memo',{rows:rows?rows:{}});
+	var boardNo = parseInt(req.params.id);
+	var sql = "select memo from tbl_board where BRDNO = " + boardNo;
+	connection.query(sql,(err,data)=> {
+		if(err) console.error("err: " + err);
+		res.render('memo',{data:data[0]});
 	});
+});
+var tempid=0
+router.get('/update/:id',(req,res)=>{
+	var boardNo = parseInt(req.params.id);
+	var sql = "select memo from tbl_board where BRDNO = " + boardNo;
+	connection.query(sql,(err,data)=> {
+		if(err) console.error("err: " + err);
+		res.render('update',{data:data[0]});
+	});
+	tempid = parseInt(req.params.id);
+});
+router.post('/update',(req,res)=>{
+	var data = req.body.memo;
+	var number = parseInt(req.params.id);
+	var sql = "UPDATE tbl_board SET memo=? WHERE BRDNO="+tempid;
+	connection.query(sql,data,(err)=>{
+		if(err) console.error("err: "+err);
+	});
+	res.redirect('/post/list')
 });
 
 router.get('/create',(req,res)=>{

@@ -10,14 +10,16 @@
 	<%
 		for(var i=0; i<rows.length; i++) {
 	%>
-		<div><tr>
-				<a href="/post/delete/<%= rows[i].BRDNO%>">DELETE</a> </td>
-			<td><%=rows[i].BRDNO%></td>
-			<td><a href="/post/list/<%= rows[i].BRDNO%>"><%=rows[i].title%></a></td>
-			<td><%=rows[i].writer%></td>
-			<td><%=rows[i].dt%></td>
-				<td><%=rows[i].memo%></td>
-		</tr></div>
+		<div style="margin-bottom: 5px; border: 2px solid black; padding: 2px;">
+			<tr>
+				<td><a href="/post/delete/<%= rows[i].BRDNO%>">DELETE</a> </td>
+				<td><a href="/post/update/<%= rows[i].BRDNO%>">UPDATE</a> </td>
+				<td><%=rows[i].BRDNO%></td>
+				<td><a href="/post/list/<%= rows[i].BRDNO%>"><%=rows[i].title%></a></td>
+				<td><%=rows[i].writer%></td>
+				<td><%=rows[i].dt%></td>
+			</tr>
+		</div>
 	<%
 		}
 	%>
