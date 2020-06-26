@@ -3,13 +3,6 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
 const app = express();
-const connection = mysql.createConnection({
-    host: "ggp04114.iptime.org",
-    port: "23306",
-    user: "root",
-    password: "1234",
-    database: "cruddb"
-});
 const port = 3000
 
 const userRouter = require('./routes/user');
