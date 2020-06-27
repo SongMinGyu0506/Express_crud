@@ -17,6 +17,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/user',userRouter);
 app.use('/post',postRouter);
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/',(req,res)=>{
+    res.redirect('/post');
+});
 
 app.listen(port, () => console.log(`Example app listening at http://ggp04114.iptime.org:2${port}`))

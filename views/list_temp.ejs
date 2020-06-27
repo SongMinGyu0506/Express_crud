@@ -1,0 +1,50 @@
+<style>
+	button {
+	color: rgba(30, 22, 54, 0.6);
+	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+	padding : 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+button:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+</style>
+
+<div style="width: 98.5%; padding: 10px; margin-bottom: 10px; background-color: black; color: white;">SongMinGyu</div>
+<thead>
+	<!--<tr>
+		<th>number</th>
+		<th>title</th>
+		<th>writer</th>
+		<th>date</th>
+	</tr>-->
+</thead>
+<tbody>
+	<%
+		for(var i=0; i<rows.length; i++) {
+	%>
+	<div style="float: left; width: 33%;">
+		<div style="margin-bottom: 10px; border: 2px solid black; padding: 2px; margin-left: 5px; box-shadow:3px 5px gray;">
+			<tr>
+				<td><a href="/post/delete/<%= rows[i].BRDNO%>">DELETE</a> </td>
+				<td><a href="/post/update/<%= rows[i].BRDNO%>">UPDATE</a> </td>
+				<td><br/><%=rows[i].BRDNO%></td>
+				<td><%=rows[i].writer%></td>
+				<td><br/><%=rows[i].dt%></td>
+				<td><br/><a href="/post/list/<%= rows[i].BRDNO%>"><%=rows[i].title%></a></td>
+				
+				
+			</tr>
+		</div>
+	</div>
+	<%
+		}
+	%>
+</tbody>
+<div>
+	<button style="margin-right: 100%;" type="button" onclick="location.href='/post/create'">create</button>
+</div>
+

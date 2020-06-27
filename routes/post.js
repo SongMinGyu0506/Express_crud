@@ -71,7 +71,7 @@ router.get('/create',(req,res)=>{
 
 router.post('/create',(req,res)=> {
 	var data = [req.body.title, req.body.writer, req.body.memo];
-	var sql = "INSERT INTO tbl_board(title,writer,memo,dt) VALUES(?,?,?,now())";
+	var sql = "INSERT INTO tbl_board(title,writer,memo,dt) VALUES(?,?,?,current_timestamp());";
 	connection.query(sql,data,(err,rows)=> {
 		if(err) console.error("err: " + err);
 });
