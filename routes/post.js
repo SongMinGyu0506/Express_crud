@@ -4,11 +4,11 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 
 const connection = mysql.createConnection({
-	host: 'localhost',
-	post: '3306',
-	user: 'root',
-	password: '',
-	database: 'cruddb',
+	host: 'yourhost',
+	port: 'yourport',
+	user: 'ID',
+	password: 'PW',
+	database: 'YOURDB',
 	multipleStatements: true
 });
 
