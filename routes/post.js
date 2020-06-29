@@ -4,11 +4,11 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 
 const connection = mysql.createConnection({
-	host: 'yourhost',
-	port: 'yourport',
-	user: 'ID',
-	password: 'PW',
-	database: 'YOURDB',
+	host: 'localhost',
+	port: '3306',
+	user: 'root',
+	password: '',
+	database: 'cruddb',
 	multipleStatements: true
 });
 
@@ -37,14 +37,30 @@ router.get('/delete/:id',(req,res)=>{
 	res.redirect('/post/list');
 })
 
+var tempboardNo = 0;
 router.get('/list/:id',(req,res)=>{
 	var boardNo = parseInt(req.params.id);
-	var sql = "select memo from tbl_board where BRDNO = " + boardNo;
+	tempboardNo = boardNo;
+	var sql = "select memo,title from tbl_board where BRDNO = " + boardNo;
 	connection.query(sql,(err,data)=> {
 		if(err) console.error("err: " + err);
 		res.render('memo',{data:data[0]});
 	});
 });
+
+router.post('/list/comment',(req,res)=>{
+	var writer = req.body.writer;
+	var memo = req.body.memo;
+	var tempNo = tempboardNo;
+
+	var data = [writer, memo, tempNo];
+	var sql="INSERT INTO tbl_comment(writer,memo,memoNo,dt) VALUES(?,?,?,current_timestamp());";
+	connection.query(sql,data,(err,rows)=>{
+		if(err) console.error("err: " + err);
+	})
+	res.redirect('/list/'+tempNo);
+})
+
 var tempid=0
 router.get('/update/:id',(req,res)=>{
 	var boardNo = parseInt(req.params.id);
